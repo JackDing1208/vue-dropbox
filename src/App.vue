@@ -11,9 +11,9 @@
         <el-container>
             <el-aside width="200px">Aside</el-aside>
             <el-container>
-                <el-header>Header</el-header>
+                <el-header height="60px">Header</el-header>
                 <el-main>Main</el-main>
-                <el-footer>Footer</el-footer>
+                <el-footer height="40px">Footer</el-footer>
             </el-container>
         </el-container>
     </div>
@@ -27,9 +27,6 @@
         box-sizing: border-box;
     }
 
-    html {
-    }
-
     ol, ul {
         list-style: none;
     }
@@ -38,12 +35,37 @@
         text-decoration: none;
     }
 
-    #app {
-        width: 100%;
+    .el-header {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-footer {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-aside {
+        background-color: #D3DCE6;
+        color: #333;
+        text-align: center;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+    }
+
+    #app > .el-container {
         height: 100%;
-        border: 1px solid red;
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        width:100%;
+    }
+
+    #app {
+        width: 100vw;
+        height: 100vh;
     }
 </style>
