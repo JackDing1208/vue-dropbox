@@ -1,24 +1,30 @@
-# vue-dropbox
+# 使用说明
 
-## Project setup
+## 安装node
+
+项目开发环境 node 版本为10.16
+
+## clone项目到本地，推荐使用ssh方式
 ```
+git clone git@github.com:JackDing1208/vue-dropbox.git
+```
+
+## 进入工程目录安装依赖，推荐使用yarn
+```
+cd vue-dropbox
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 本地开发环境跑项目
 ```
 yarn start
 ```
 
-### Compiles and minifies for production
+### 打包到dist目录
 ```
 yarn build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
