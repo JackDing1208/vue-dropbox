@@ -4,33 +4,39 @@
             <Aside/>
         </el-aside>
         <el-container>
-            <el-header height="60px">Header</el-header>
+            <el-header height="60px">
+                <Header/>
+            </el-header>
             <el-main>Main</el-main>
-            <el-footer height="40px">Footer</el-footer>
+            <el-footer height="40px">
+                <p>Copyright © 2020 Edensoft All Rights Reserved</p>
+            </el-footer>
         </el-container>
     </el-container>
 </template>
 
 <script>
   import Aside from "./Aside"
-
+  import Header from "./Header"
   export default {
     name: "Container",
-    components: {Aside},
+    components: {Aside,Header},
   }
 </script>
 
 <style scoped>
     .el-header {
-        background-color: #B3C0D1;
-        color: #333;
-        text-align: center;
+        background: #5791d0;
     }
 
     .el-footer {
-        background-color: #B3C0D1;
         color: #333;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 10px;
+        font-size: 12px;
     }
 
     .el-aside {
