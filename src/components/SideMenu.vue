@@ -37,7 +37,7 @@
         console.log(key, keyPath)
       },
       handleSelect(index) {
-        this.$router.push(`${index}`)
+        this.$router.push(`${index}`).catch(()=>{})
       },
     },
   }

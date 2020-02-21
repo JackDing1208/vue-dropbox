@@ -10,12 +10,11 @@ import Page404 from "../pages/404"
 Vue.use(Router)
 
 
-
 const router = new Router({
   routes: [
     {
       path: "/",
-      component: Login,
+      redirect: "login"
     },
     {
       path: "/login",
@@ -24,25 +23,26 @@ const router = new Router({
     {
       path: "/dashboard",
       component: Dashboard,
-      children:[{
-        path:"/",
-        component:Home
-      },{
+      //子路由路径开头不能加/
+      children: [{
+        path: "/",
+        redirect: "home",
+      }, {
         path: "home",
         component: Home,
-      },{
+      }, {
         path: "company",
         component: CompanyFile,
-      },{
+      }, {
         path: "share",
         component: ShareFile,
-      }]
+      }],
     },
     {
       path: "*",
       component: Page404,
-    }
-  ]
+    },
+  ],
 })
 
 export default router

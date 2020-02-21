@@ -18,7 +18,7 @@
     components: {SideMenu},
     methods: {
       backHome() {
-        this.$router.push(`home`)
+        this.$router.push(`home`).catch(()=>{})
       },
     },
   }
