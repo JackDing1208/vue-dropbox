@@ -3,21 +3,24 @@
         <div class="logo">
             <img src="../assets/logo.png" alt="">
         </div>
-        <el-button>返回首页</el-button>
-        <div>
-            <SideMenu/>
-        </div>
+        <el-button class="back-button" @click="backHome">返回首页</el-button>
+        <SideMenu/>
     </div>
 </template>
 
 <script>
-    import SideMenu from "./SideMenu"
+  import SideMenu from "./SideMenu"
+
   export default {
     data() {
-      return {
-      }
+      return {}
     },
-    components:{SideMenu}
+    components: {SideMenu},
+    methods: {
+      backHome() {
+        this.$router.push(`home`)
+      },
+    },
   }
 </script>
 
@@ -27,9 +30,10 @@
     .container {
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
+    }
+
+    .back-button {
+        width: 100%;
     }
 
     .logo {

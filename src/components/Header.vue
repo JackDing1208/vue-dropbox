@@ -5,12 +5,12 @@
         </div>
         <div class="search">
             <el-input placeholder="搜索当前目录下的文件"
-                    suffix-icon="el-icon-search"
-                    v-model="input1">
+                      suffix-icon="el-icon-search"
+                      v-model="input1">
             </el-input>
         </div>
         <div class="menu">
-            <el-dropdown>
+            <el-dropdown @command="handleCommand">
                 <el-button type="primary">
                     <i class="el-icon-user"></i>
                     <span class="userName">用户名字</span>
@@ -28,7 +28,7 @@
                     <el-dropdown-item>用户报表</el-dropdown-item>
                     <el-dropdown-item>自定义报表</el-dropdown-item>
                     <hr>
-                    <el-dropdown-item>退出登录</el-dropdown-item>
+                    <el-dropdown-item command="/login">退出登录</el-dropdown-item>
 
                 </el-dropdown-menu>
             </el-dropdown>
@@ -41,9 +41,14 @@
     name: "Header",
     data: () => {
       return {
-        input1: ""
+        input1: "",
       }
-    }
+    },
+    methods: {
+      handleCommand(command) {
+        command && this.$router.push({path: command})
+      },
+    },
   }
 
 </script>
@@ -68,10 +73,6 @@
         margin: 4px
     }
 
-    .menu {
-    }
-
-
     .el-button {
         background: #5791d0;
         border: 0px;
@@ -83,7 +84,7 @@
         vertical-align: top;
     }
 
-    .el-dropdown + .el-dropdown {
+    .el-dropdown {
         margin-left: 15px;
     }
 

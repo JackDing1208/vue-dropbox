@@ -8,21 +8,22 @@
                 <Header/>
             </el-header>
             <el-main>
-                RouterView
+                <Main/>
             </el-main>
             <el-footer height="40px">
-                <p>Copyright © 2020 Edensoft All Rights Reserved</p>
+                <p>Copyright © 2009 EdenSoft All Rights Reserved</p>
             </el-footer>
         </el-container>
     </el-container>
 </template>
 
 <script>
-  import Aside from "./Aside"
-  import Header from "./Header"
+  import Aside from "../components/Aside"
+  import Header from "../components/Header"
+  import Main from "../components/Main"
   export default {
     name: "Container",
-    components: {Aside,Header},
+    components: {Aside,Header,Main},
   }
 </script>
 
