@@ -1,15 +1,15 @@
 <script>
-  import Container from "./components/Container"
+  import Layout from "./components/Layout"
 
   export default {
     name: "App",
-    components: {Container},
+    components: {Layout},
   }
 </script>
 
 <template>
     <div id="app">
-        <Container/>
+        <Layout/>
     </div>
 </template>
 

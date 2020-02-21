@@ -7,7 +7,9 @@
             <el-header height="60px">
                 <Header/>
             </el-header>
-            <el-main>Main</el-main>
+            <el-main>
+                RouterView
+            </el-main>
             <el-footer height="40px">
                 <p>Copyright © 2020 Edensoft All Rights Reserved</p>
             </el-footer>
