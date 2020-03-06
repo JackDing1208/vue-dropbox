@@ -45,6 +45,11 @@
 </script>
 
 <style scoped>
+
+    .el-menu{
+        text-align: left;
+    }
+
     .container {
         width: 100%;
         height: 100%;
