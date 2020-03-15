@@ -28,7 +28,14 @@
 </template>
 
 <script>
+  import {http,url} from "../lib"
+
   export default {
+    mounted(){
+      http.get(url.menuList).then((res)=>{
+        console.log(res)
+      })
+    },
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath)
@@ -37,7 +44,7 @@
         console.log(key, keyPath)
       },
       handleSelect(index) {
-        this.$router.push(`${index}`).catch(()=>{})
+        this.$router.push(`${index}`).catch(() => {})
       },
     },
   }
@@ -46,7 +53,7 @@
 
 <style scoped>
 
-    .el-menu{
+    .el-menu {
         text-align: left;
     }
 
