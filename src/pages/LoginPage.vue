@@ -41,12 +41,14 @@
             </el-form>
         </el-main>
         <el-footer height="40px">
-            <p>Copyright © 2009 Edensoft All Rights Reserved</p>
+            <p>Copyright © 2020 Edensoft All Rights Reserved</p>
         </el-footer>
     </el-container>
 </template>
 
 <script>
+  // import Http from "../lib/http"
+
   export default {
     name: "Login",
     data() {
@@ -65,6 +67,7 @@
     },
     methods: {
       handleLogin() {
+        // Http.checkLogin()
         this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
       },
     },
@@ -87,16 +90,20 @@
         align-items: center;
     }
 
+    .el-main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .login-form {
-        position: relative;
         width: 350px;
         max-width: 100%;
         padding: 35px 35px;
-        margin: 0 auto;
+        margin: auto;
         overflow: hidden;
         background: #3273BA;
         border-radius: 10px;
-        top: 150px;
         opacity: 0.9;
     }
 

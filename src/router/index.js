@@ -1,11 +1,11 @@
 import Vue from "vue"
 import Router from "vue-router"
-import Dashboard from "../pages/Dashboard"
-import Login from "../pages/Login"
-import CompanyFile from "../pages/CompanyFile"
-import ShareFile from "../pages/ShareFile"
-import Home from "../pages/Home"
-import Page404 from "../pages/404"
+import Dashboard from "../pages/DashboardPage"
+import Login from "../pages/LoginPage"
+import FileManagement from "../pages/FileManagementPage"
+import FileShare from "../pages/FileSharePage"
+import Home from "../pages/HomePage"
+import Page404 from "../pages/404Page"
 
 Vue.use(Router)
 
@@ -32,10 +32,10 @@ const router = new Router({
         component: Home,
       }, {
         path: "company",
-        component: CompanyFile,
+        component: FileManagement,
       }, {
         path: "share",
-        component: ShareFile,
+        component: FileShare,
       }],
     },
     {
