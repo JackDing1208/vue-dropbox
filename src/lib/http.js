@@ -1,8 +1,8 @@
-
 import axios from 'axios'
 
 let ajax = function (method, url, data) {
   return new Promise((resolve, reject) => {
+    //统一处理状态码
     axios({method, url, data})
       .then((res) => {
         if (res.status === 200) {
