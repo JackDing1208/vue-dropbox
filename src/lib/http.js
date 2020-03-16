@@ -6,7 +6,6 @@ let ajax = function (method, url, data) {
     axios({method, url, data})
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
           resolve(res)
         } else if (res.status === 401) {
           location.href = 'index.html'
