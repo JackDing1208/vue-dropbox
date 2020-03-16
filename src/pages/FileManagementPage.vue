@@ -97,64 +97,61 @@
           date: "2016-05-03",
           name: "王小虎1",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:2
+          size: 2,
         }, {
           date: "2016-05-02",
           name: "王小虎2",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:3
+          size: 3,
 
         }, {
           date: "2016-05-04",
           name: "王小虎3",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:4
+          size: 4,
 
         }, {
           date: "2016-05-01",
           name: "王小虎4",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:8
+          size: 8,
 
         }, {
           date: "2016-05-08",
           name: "王小虎5",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:4
+          size: 4,
 
         }, {
           date: "2016-05-06",
           name: "王小虎6",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:123412
+          size: 123412,
 
         }, {
           date: "2016-05-07",
           name: "王小虎7",
           address: "上海市普陀区金沙江路 1518 弄",
-          size:2
+          size: 2,
 
         }],
-        multipleSelection: []
+        multipleSelection: [],
       }
     },
     methods: {
-      methods: {
-        toggleSelection(rows) {
-          if (rows) {
-            rows.forEach(row => {
-              this.$refs.multipleTable.toggleRowSelection(row)
-            })
-          } else {
-            this.$refs.multipleTable.clearSelection()
-          }
-        },
-        handleSelectionChange(val) {
-          this.multipleSelection = val
+      toggleSelection(rows) {
+        if (rows) {
+          rows.forEach(row => {
+            this.$refs.multipleTable.toggleRowSelection(row)
+          })
+        } else {
+          this.$refs.multipleTable.clearSelection()
         }
-      }
-    }
-
+      },
+      handleSelectionChange(val) {
+        this.multipleSelection = val
+      },
+    },
   }
 
 </script>
@@ -166,12 +163,13 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        border: 1px solid red;
     }
 
     .el-button-group {
-        margin-right: 20px;
+        margin-right: 10px;
     }
+
+
 
     .toolBar {
         height: 60px;
