@@ -2,9 +2,11 @@ const host = "http://121.36.74.193:5000/api"
 
 //设置请求路径
 let url = {
+  login: "/Login/CheckLogin",
+  logout: "/Login/OutLogin",
   getGroupList: "/User/GetGroupList",
-  login:"/Login/CheckLogin",
-  getUserInfo:"/User/GetFormJson"
+  getUserInfo: "/User/GetFormJson",
+  getSystemInfo:"/SystemSetting/GetSystemInfo"
 }
 
 

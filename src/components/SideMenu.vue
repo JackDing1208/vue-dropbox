@@ -32,7 +32,7 @@
 
   export default {
     mounted(){
-      http.get(url.menuList).then((res)=>{
+      http.get(url.getGroupList).then((res)=>{
         console.log(res)
       })
     },

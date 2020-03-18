@@ -17,7 +17,7 @@
                     <i class="el-icon-arrow-down"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>系统设置</el-dropdown-item>
+                    <el-dropdown-item command="/dashboard">系统设置</el-dropdown-item>
                     <el-dropdown-item>个人资料</el-dropdown-item>
                     <el-dropdown-item>修改密码</el-dropdown-item>
                     <el-dropdown-item>用户管理</el-dropdown-item>

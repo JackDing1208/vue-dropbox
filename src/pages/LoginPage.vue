@@ -47,7 +47,8 @@
 </template>
 
 <script>
-  import {http, url} from "../lib"
+  import {http,url} from "../lib"
+  // import axios from "axios"
 
   export default {
     name: "Login",
@@ -67,14 +68,17 @@
     },
     methods: {
       handleLogin() {
-        // let data = {
-        //   username: "admin",
-        //   password: "abcd123",
-        //   isRember: true,
-        //   isAD: false
-        // }
-        http.get(url.getUserInfo, {keyValue: 1}).catch((res) => {console.log(res)})
-        this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
+        let data = {
+          username: "admin",
+          password: "abcd123",
+          isRember: true,
+          isAD: false
+        }
+
+        http.get(url.login,data).then((res) => {
+          console.log(res)}
+          )
+        // this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
       },
     },
   }
