@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  // import Http from "../lib/http"
+  import {http, url} from "../lib"
 
   export default {
     name: "Login",
@@ -67,7 +67,13 @@
     },
     methods: {
       handleLogin() {
-        // Http.checkLogin()
+        // let data = {
+        //   username: "admin",
+        //   password: "abcd123",
+        //   isRember: true,
+        //   isAD: false
+        // }
+        http.get(url.getUserInfo, {keyValue: 1}).catch((res) => {console.log(res)})
         this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
       },
     },
@@ -76,13 +82,13 @@
 
 <style scoped>
     .el-container {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         margin: 0 auto;
         background-image: url(../assets/login-bg.jpg);
         background-repeat: no-repeat;
         background-size: cover;
-        overflow: auto;
+        overflow: hidden;
     }
 
     .el-header {
@@ -90,7 +96,7 @@
         align-items: center;
     }
 
-    .el-main{
+    .el-main {
         display: flex;
         align-items: center;
         justify-content: center;
