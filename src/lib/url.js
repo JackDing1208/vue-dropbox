@@ -11,7 +11,7 @@ let url = {
 
 
 for (let key in url) {
-  console.log(key)
+  // console.log(key)
   url[key] = host + url[key]
 }
 

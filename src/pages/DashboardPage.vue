@@ -21,9 +21,17 @@
   import Aside from "../components/Aside"
   import Header from "../components/Header"
   import Main from "../components/Main"
+  import {http,url} from "../lib"
   export default {
     name: "Container",
     components: {Aside,Header,Main},
+    mounted() {
+      http.get(url.getUserInfo,{keyValue:1}).then((res)=>{
+        console.log(res)
+        this.$store.commit("saveUserInfo","haha")
+        console.log(this.$store.state.userInfo)
+      })
+    }
   }
 </script>
 

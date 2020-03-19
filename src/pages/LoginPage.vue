@@ -76,9 +76,10 @@
         }
 
         http.get(url.login,data).then((res) => {
-          console.log(res)}
-          )
-        // this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
+          if (res.status === 200) {
+            this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
+          }
+        })
       },
     },
   }
