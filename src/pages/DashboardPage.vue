@@ -22,14 +22,16 @@
   import Header from "../components/Header"
   import Main from "../components/Main"
   import {http,url} from "../lib"
+
   export default {
     name: "Container",
     components: {Aside,Header,Main},
     mounted() {
-      http.get(url.getUserInfo,{keyValue:1}).then((res)=>{
+      http.get(url.getUserInfo+"?keyValue=2").then((res)=>{
         console.log(res)
-        this.$store.commit("saveUserInfo","haha")
+        this.$store.commit("saveUserInfo",res.data.data)
         console.log(this.$store.state.userInfo)
+        console.log(this.$store.state.userInfo.UserName)
       })
     }
   }

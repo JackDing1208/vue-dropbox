@@ -48,7 +48,6 @@
 
 <script>
   import {http,url} from "../lib"
-  // import axios from "axios"
 
   export default {
     name: "Login",
@@ -76,8 +75,9 @@
         }
 
         http.get(url.login,data).then((res) => {
+          console.log(res)
           if (res.status === 200) {
-            this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
+            // this.$router.push({path: this.redirect || "/dashboard", query: this.otherQuery})
           }
         })
       },
