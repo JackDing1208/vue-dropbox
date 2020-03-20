@@ -6,7 +6,8 @@ let url = {
   logout: "/Login/OutLogin",
   getGroupList: "/User/GetGroupList",
   getUserInfo: "/User/GetFormJson",
-  getSystemInfo:"/SystemSetting/GetSystemInfo"
+  getSystemInfo: "/SystemSetting/GetSystemInfo",
+  getGridJson: "/User/GetGridJson",
 }
 
 

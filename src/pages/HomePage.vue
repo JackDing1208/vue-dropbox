@@ -1,11 +1,29 @@
 <template>
     <div class="container">
-            主页
+        <button @click="getUserGrid"> 发post请求</button>
     </div>
 </template>
 
 <script>
-  export default {}
+  import {http, url} from "../lib"
+
+  export default {
+    methods: {
+      getUserGrid() {
+        http.post(url.getGridJson, {
+          "pagination": {
+            "rows": 10,
+            "page": 1,
+            "sidx": "CreateTime",
+            "sord": "desc",
+            "record": "",
+          },
+          "Keyword": "",
+        }).then((res)=>{console.log(res)})
+      },
+    },
+
+  }
 
 </script>
 
