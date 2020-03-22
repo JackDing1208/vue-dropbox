@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <ul class="module-container"
+            @click="goToModule"
         >
             <li v-for="(item ,index) in moduleArray"
                 :key="index.toString()"
-                @click="goToModule($event,item.route)"
-
+                :data-route = "item.route"
             >
                 <div :data-route="index.route">
                     <div class="module-button" :style="{background:item.color}">
@@ -27,14 +27,14 @@
     data() {
       return {
         moduleArray: [
-          {name: "系统设置", icon: "haha", route: "system", color: "blue"},
-          {name: "部门管理", icon: "haha", route: "system", color: "yellow"},
-          {name: "用户管理", icon: "haha", route: "system", color: "blue"},
-          {name: "统计报表", icon: "haha", route: "system", color: "blue"},
-          {name: "日志审计", icon: "haha", route: "system", color: "pink"},
-          {name: "我的文档", icon: "haha", route: "system", color: "blue"},
-          {name: "部门文档", icon: "haha", route: "system", color: "blue"},
-          {name: "知识管理", icon: "haha", route: "system", color: "green"},
+          {name: "系统设置", icon: "haha", route: "system1", color: "blue"},
+          {name: "部门管理", icon: "haha", route: "system2", color: "yellow"},
+          {name: "用户管理", icon: "haha", route: "system3", color: "blue"},
+          {name: "统计报表", icon: "haha", route: "system4", color: "blue"},
+          {name: "日志审计", icon: "haha", route: "system5", color: "pink"},
+          {name: "我的文档", icon: "haha", route: "system6", color: "blue"},
+          {name: "部门文档", icon: "haha", route: "system7", color: "blue"},
+          {name: "知识管理", icon: "haha", route: "system8", color: "green"},
           {name: "我的报表", icon: "haha", route: "system", color: "blue"},
           {name: "帮助中心", icon: "haha", route: "system", color: "blue"},
         ]
@@ -55,16 +55,15 @@
           "Keyword": "",
         }).then((res) => {console.log(res)})
       },
-      goToModule(e,route) {
-        console.log(route)
-        // while (target.tagName.toLowerCase() !== "ul") {
-        //   if (target.tagName.toLowerCase() === "li") {
-        //     console.log(target)
-        //     console.log(target.getAttribute("data-route"))
-        //     break
-        //   }
-        //   target = target.parentNode
-        // }
+      goToModule(e) {
+        let target = e.target
+        while (target.tagName.toLowerCase() !== "ul") {
+          if (target.tagName.toLowerCase() === "li") {
+            console.log(target.getAttribute("data-route"))
+            break
+          }
+          target = target.parentNode
+        }
       }
     },
 
