@@ -6,7 +6,7 @@
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "bash deploy.sh"
+    "deploy": "scp -r dist root@120.76.61.14:/usr/share/www/vue"
   },
   "dependencies": {
     "axios": "^0.19.2",
