@@ -28,13 +28,13 @@
 </template>
 
 <script>
-  // import {http,url} from "../lib"
+  import {http,url} from "../lib"
 
   export default {
     mounted(){
-      // http.get(url.getGroupList).then((res)=>{
-      //   console.log(res)
-      // })
+      http.get(url.getGroupMenu).then((res)=>{
+        console.log(res)
+      })
     },
     methods: {
       handleOpen(key, keyPath) {

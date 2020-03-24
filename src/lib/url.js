@@ -8,6 +8,7 @@ let url = {
   getUserInfo: "/User/GetFormJson",
   getSystemInfo: "/SystemSetting/GetSystemInfo",
   getGridJson: "/User/GetGridJson",
+  getGroupMenu:"/File/GetGroupMenu",
 }
 
 
