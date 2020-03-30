@@ -90,6 +90,8 @@
 </template>
 
 <script>
+  import {http, url} from "../lib"
+
   export default {
     data() {
       return {
@@ -138,6 +140,22 @@
         multipleSelection: [],
       }
     },
+    mounted() {
+      const {groupId} = this.$route.query
+      console.log(groupId)
+      http.post(url.getPersonalFileList, {
+        ParentId: 0,
+        pagination: {
+          rows: 10,
+          page: 1,
+        },
+        records: 1,
+        total: 1
+      }).then((res) => {
+        console.log(res)
+      })
+    },
+
     methods: {
       toggleSelection(rows) {
         if (rows) {
@@ -168,7 +186,6 @@
     .el-button-group {
         margin-right: 10px;
     }
-
 
 
     .toolBar {

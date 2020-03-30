@@ -28,9 +28,7 @@
     components: {Aside, Header, Main},
     mounted() {
       http.get(url.getUserInfo, {keyValue: 2}).then((res) => {
-        console.log(res)
         this.$store.commit("saveUserInfo", res.data.data)
-        console.log("UserInfo",this.$store.state.userInfo)
       })
     },
   }

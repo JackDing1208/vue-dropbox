@@ -10,11 +10,16 @@
                 <i class="el-icon-location"></i>
                 <span>公司文档</span>
             </template>
-            <el-submenu v-for="(item ,index) in groupMenu" :index="item.Id" :key="index">
-
+            <el-submenu v-for="(item ,index) in secondClassMenu"
+                        :index="item.Id.toString()" :key="index">
                 <template slot="title">{{item.GroupName}}</template>
-                                <el-menu-item index="company" key="company-1">研发一部</el-menu-item>
+                <el-menu-item v-for="(subItem) in item.Subset" :index="subItem.Id.toString()" :key="subItem.Id">
+                    {{subItem.GroupName}}
+                </el-menu-item>
             </el-submenu>
+            <el-menu-item v-for="(item) in firstClassMenu" :index="item.Id.toString()" :key="item.Id">
+                {{item.GroupName}}
+            </el-menu-item>
         </el-submenu>
         <el-menu-item index="share" key="share">
             <i class="el-icon-menu"></i>
@@ -37,22 +42,34 @@
       }
     },
 
-
+    computed:{
+      firstClassMenu(){
+        return this.groupMenu.filter((item)=>{
+          return item.Subset.length===0
+        })
+      },
+      secondClassMenu(){
+        return this.groupMenu.filter((item)=>{
+          return item.Subset.length>0
+        })
+      }
+    },
     mounted() {
       http.get(url.getGroupMenu).then((res) => {
-        console.log(22222222222222222, res.data.data[0].Subset)
+        console.log("groupMenu", res.data.data[0].Subset)
         this.groupMenu = res.data.data[0].Subset
       })
     },
     methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath)
+        console.log("open", key, keyPath)
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath)
+        console.log("close", key, keyPath)
       },
       handleSelect(index) {
-        this.$router.push(`${index}`).catch(() => {})
+        console.log("select", index)
+        this.$router.push({path: "groupFile", query: {groupId: index}})
       },
     },
   }

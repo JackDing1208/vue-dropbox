@@ -10,6 +10,8 @@ let url = {
   getSystemInfo: "/SystemSetting/GetSystemInfo",
   getGridJson: "/User/GetGridJson",
   getGroupMenu: "/File/GetGroupMenu",
+  getGroupFileList: "/File/GetGroupFileList",
+  getPersonalFileList:"/File/GetFileList"
 }
 
 

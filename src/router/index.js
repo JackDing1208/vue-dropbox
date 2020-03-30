@@ -31,7 +31,7 @@ const router = new Router({
         path: "home",
         component: Home,
       }, {
-        path: "company",
+        path: "groupFile",
         component: FileManagement,
       }, {
         path: "share",
