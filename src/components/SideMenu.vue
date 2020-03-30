@@ -10,16 +10,20 @@
                 <i class="el-icon-location"></i>
                 <span>公司文档</span>
             </template>
-            <el-submenu v-for="(item ,index) in secondClassMenu"
-                        :index="item.Id.toString()" :key="index">
-                <template slot="title">{{item.GroupName}}</template>
-                <el-menu-item v-for="(subItem) in item.Subset" :index="subItem.Id.toString()" :key="subItem.Id">
-                    {{subItem.GroupName}}
+            <template v-for="item in groupMenu">
+                <el-submenu v-if="item.Subset.length>0"
+                            :index="item.Id.toString()" :key="item.Id">
+                    <template slot="title">{{item.GroupName}}</template>
+                    <el-menu-item v-for="(subItem) in item.Subset" :index="subItem.Id.toString()" :key="subItem.Id">
+                        {{subItem.GroupName}}
+                    </el-menu-item>
+                </el-submenu>
+                <el-menu-item v-else-if="item.Subset.length===0" :index="item.Id.toString()" :key="item.Id">
+                    {{item.GroupName}}
                 </el-menu-item>
-            </el-submenu>
-            <el-menu-item v-for="(item) in firstClassMenu" :index="item.Id.toString()" :key="item.Id">
-                {{item.GroupName}}
-            </el-menu-item>
+            </template>
+
+
         </el-submenu>
         <el-menu-item index="share" key="share">
             <i class="el-icon-menu"></i>
@@ -42,17 +46,7 @@
       }
     },
 
-    computed:{
-      firstClassMenu(){
-        return this.groupMenu.filter((item)=>{
-          return item.Subset.length===0
-        })
-      },
-      secondClassMenu(){
-        return this.groupMenu.filter((item)=>{
-          return item.Subset.length>0
-        })
-      }
+    computed: {
     },
     mounted() {
       http.get(url.getGroupMenu).then((res) => {
