@@ -10,10 +10,10 @@
                 <i class="el-icon-location"></i>
                 <span>公司文档</span>
             </template>
-            <el-submenu index="1-1">
-                <template slot="title">研发部</template>
-                <el-menu-item index="company" key="company-1">研发一部</el-menu-item>
-                <el-menu-item index="company" key="company-2">研发二部</el-menu-item>
+            <el-submenu v-for="(item ,index) in groupMenu" :index="item.Id" :key="index">
+
+                <template slot="title">{{item.GroupName}}</template>
+                                <el-menu-item index="company" key="company-1">研发一部</el-menu-item>
             </el-submenu>
         </el-submenu>
         <el-menu-item index="share" key="share">
@@ -28,12 +28,20 @@
 </template>
 
 <script>
-  import {http,url} from "../lib"
+  import {http, url} from "../lib"
 
   export default {
-    mounted(){
-      http.get(url.getGroupMenu).then((res)=>{
-        console.log(res)
+    data() {
+      return {
+        groupMenu: [],
+      }
+    },
+
+
+    mounted() {
+      http.get(url.getGroupMenu).then((res) => {
+        console.log(22222222222222222, res.data.data[0].Subset)
+        this.groupMenu = res.data.data[0].Subset
       })
     },
     methods: {

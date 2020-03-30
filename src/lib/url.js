@@ -1,4 +1,5 @@
-const host = "http://121.36.74.193:5000/api"
+// const host = "http://121.36.74.193:5000/api"
+const host = "http://edoc.edensoft.com.cn/api"
 
 //设置请求路径
 let url = {
@@ -8,7 +9,7 @@ let url = {
   getUserInfo: "/User/GetFormJson",
   getSystemInfo: "/SystemSetting/GetSystemInfo",
   getGridJson: "/User/GetGridJson",
-  getGroupMenu:"/File/GetGroupMenu",
+  getGroupMenu: "/File/GetGroupMenu",
 }
 
 
