@@ -2,7 +2,7 @@
     <div class="container">
         <section class="toolBar">
             <el-button-group>
-                <el-button type="primary" icon="el-icon-edit">上传</el-button>
+                <el-button type="primary" icon="el-icon-edit" @click="dialogTableVisible = true">上传</el-button>
                 <el-button type="primary" icon="el-icon-share">下载</el-button>
                 <el-button type="primary" icon="el-icon-delete">添加文件夹</el-button>
                 <el-button type="primary" icon="el-icon-delete">预览</el-button>
@@ -86,15 +86,22 @@
                 layout="prev, pager, next"
                 :total="100">
         </el-pagination>
+
+
+        <el-dialog title="上传文件" :visible.sync="dialogTableVisible">
+            <Uploader></Uploader>
+        </el-dialog>
+
     </div>
 </template>
 
 <script>
   import {http, url} from "../lib"
-
+  import Uploader from "../components/Uploader"
   export default {
     data() {
       return {
+        dialogTableVisible:false,
         tableData: [{
           date: "2016-05-03",
           name: "王小虎1",
@@ -170,6 +177,7 @@
         this.multipleSelection = val
       },
     },
+    components:{Uploader}
   }
 
 </script>
@@ -186,6 +194,7 @@
     .el-button-group {
         margin-right: 10px;
     }
+
 
 
     .toolBar {
