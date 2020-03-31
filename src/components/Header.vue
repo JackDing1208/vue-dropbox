@@ -3,11 +3,17 @@
         <div class="title">
             <h1>云文档管理系统</h1>
         </div>
-        <div class="search">
+        <div class="search-wrapper">
             <el-input placeholder="搜索当前目录下的文件"
-                      suffix-icon="el-icon-search"
                       v-model="input1">
             </el-input>
+            <div class="search-button-wrapper">
+                <div class="search-all">全文搜索</div>
+                <div class="search-line"></div>
+                <div class="search-button">
+                    <i class="el-icon-search"></i>
+                </div>
+            </div>
         </div>
         <div class="menu">
             <el-dropdown @command="handleCommand">
@@ -61,6 +67,39 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+
+    .search-wrapper {
+        width: 350px;
+        position: relative;
+    }
+
+    .search-button-wrapper {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .search-line{
+        margin: auto 5px;
+        height: 20px;
+        border-right: 1px solid #333;
+    }
+
+    .search-all {
+        background: #8ab2de;
+        padding: 5px 8px;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #fff;
+    }
+
+    .search-all:hover {
+        cursor: default;
     }
 
     .title {
