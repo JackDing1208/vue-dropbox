@@ -14,12 +14,11 @@
 
             </li>
         </ul>
-
     </div>
 </template>
 
 <script>
-  import {http, url} from "../lib"
+  // import {http, url} from "../lib"
 
   export default {
     data() {
@@ -41,24 +40,9 @@
 
 
     methods: {
-      getUserGrid() {
-        http.post(url.getGridJson, {
-          "pagination": {
-            "rows": 10,
-            "page": 1,
-            "sidx": "CreateTime",
-            "sord": "desc",
-            "record": "",
-          },
-          "Keyword": "",
-        }).then((res) => {console.log(res)})
-      },
       goToModule(route) {
         console.log(route)
       },
-      geticonSrc(name) {
-        return `../assets/${name}.png`
-      }
     },
 
   }

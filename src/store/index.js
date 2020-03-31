@@ -1,6 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
-
+import createPersistedState from "vuex-persistedstate"
 //挂载Vuex
 Vue.use(Vuex)
 
@@ -13,10 +13,16 @@ export default new Vuex.Store({
   mutations: {
     saveUserInfo(state, value) {
       state.userInfo = value
+    },
+    testStore(state, value) {
+      state.name = value
     }
   },
   actions: {},
-  getters: {}
+  getters: {},
+  plugins: [
+    createPersistedState({storage: window.localStorage})
+  ]
 })
 
 
