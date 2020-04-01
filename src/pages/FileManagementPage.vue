@@ -23,7 +23,7 @@
 
         </section>
         <section class="content">
-            <h2>部门名字</h2>
+            <h2>{{groupName}}</h2>
             <el-table
                     ref="multipleTable"
                     :data="tableData"
@@ -101,6 +101,7 @@
   export default {
     data() {
       return {
+        groupName:"部门名字",
         dialogTableVisible:false,
         tableData: [{
           date: "2016-05-03",
@@ -149,6 +150,7 @@
     },
     mounted() {
       const {groupId} = this.$route.query
+      this.groupName = this.groupName + groupId
       console.log(groupId)
       http.post(url.getPersonalFileList, {
         ParentId: 0,

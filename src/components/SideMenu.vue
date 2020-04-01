@@ -14,9 +14,25 @@
                 <el-submenu v-if="item.Subset.length>0"
                             :index="item.Id.toString()" :key="item.Id">
                     <template slot="title">{{item.GroupName}}</template>
-                    <el-menu-item v-for="(subItem) in item.Subset" :index="subItem.Id.toString()" :key="subItem.Id">
-                        {{subItem.GroupName}}
-                    </el-menu-item>
+                    <template v-for="subItem in item.Subset">
+                        <el-submenu v-if="subItem.Subset.length>0"
+                                :index="subItem.Id.toString()"
+                                :key="subItem.Id">
+                            <template slot="title">
+                                {{subItem.GroupName}}
+                            </template>
+                            <el-menu-item v-for="thirdItem in subItem.Subset"
+                                          :index="thirdItem.Id.toString()"
+                                          :key="thirdItem.Id">
+                                {{thirdItem.GroupName}}
+                            </el-menu-item>
+                        </el-submenu>
+                        <el-menu-item v-else-if="subItem.Subset.length===0"
+                                :index="subItem.Id.toString()"
+                                :key="subItem.Id">
+                            {{subItem.GroupName}}
+                        </el-menu-item>
+                    </template>
                 </el-submenu>
                 <el-menu-item v-else-if="item.Subset.length===0" :index="item.Id.toString()" :key="item.Id">
                     {{item.GroupName}}
@@ -46,25 +62,33 @@
       }
     },
 
-    computed: {
-    },
     mounted() {
       http.get(url.getGroupMenu).then((res) => {
         console.log("groupMenu", res.data.data[0].Subset)
         this.groupMenu = res.data.data[0].Subset
       })
     },
+    computed: {},
     methods: {
-      handleOpen(key, keyPath) {
-        console.log("open", key, keyPath)
+      handleOpen(key) {
+        console.log("open", key)
+        this.goToFileList(key)
       },
-      handleClose(key, keyPath) {
-        console.log("close", key, keyPath)
+      handleClose(key) {
+        console.log("close", key)
       },
-      handleSelect(index) {
-        console.log("select", index)
-        this.$router.push({path: "groupFile", query: {groupId: index}})
+      handleSelect(key) {
+        console.log("select", key)
+        this.goToFileList(key)
       },
+      goToFileList(key){
+        this.$router.push({
+          path: "groupFile",
+          query: {
+            groupId: key,
+          }
+        })
+      }
     },
   }
 
