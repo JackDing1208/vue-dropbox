@@ -12,40 +12,43 @@
             </template>
             <template v-for="item in groupMenu">
                 <el-submenu v-if="item.Subset.length>0"
-                            :index="item.Id.toString()" :key="item.Id">
+                            :index="getJsonIndex('groupFile',item.Id,item.GroupName)"
+                            :key="item.Id">
                     <template slot="title">{{item.GroupName}}</template>
                     <template v-for="subItem in item.Subset">
                         <el-submenu v-if="subItem.Subset.length>0"
-                                :index="subItem.Id.toString()"
-                                :key="subItem.Id">
+                                    :index="getJsonIndex('groupFile',subItem.Id,subItem.GroupName)"
+                                    :key="subItem.Id">
                             <template slot="title">
                                 {{subItem.GroupName}}
                             </template>
                             <el-menu-item v-for="thirdItem in subItem.Subset"
-                                          :index="thirdItem.Id.toString()"
+                                          :index="getJsonIndex('groupFile',thirdItem.Id,thirdItem.GroupName)"
                                           :key="thirdItem.Id">
                                 {{thirdItem.GroupName}}
                             </el-menu-item>
                         </el-submenu>
                         <el-menu-item v-else-if="subItem.Subset.length===0"
-                                :index="subItem.Id.toString()"
-                                :key="subItem.Id">
+                                      :index="getJsonIndex('groupFile',subItem.Id,subItem.GroupName)"
+                                      :key="subItem.Id">
                             {{subItem.GroupName}}
                         </el-menu-item>
                     </template>
                 </el-submenu>
-                <el-menu-item v-else-if="item.Subset.length===0" :index="item.Id.toString()" :key="item.Id">
+                <el-menu-item v-else-if="item.Subset.length===0"
+                              :index="getJsonIndex('groupFile',item.Id,item.GroupName)"
+                              :key="item.Id">
                     {{item.GroupName}}
                 </el-menu-item>
             </template>
 
 
         </el-submenu>
-        <el-menu-item index="share" key="share">
+        <el-menu-item :index="getJsonIndex('share')">
             <i class="el-icon-menu"></i>
             <span slot="title">共享文档</span>
         </el-menu-item>
-        <el-menu-item index="my" key="my">
+        <el-menu-item :index="getJsonIndex('myFile')">
             <i class="el-icon-setting"></i>
             <span slot="title">我的文档</span>
         </el-menu-item>
@@ -70,8 +73,13 @@
     },
     computed: {},
     methods: {
+      getJsonIndex(route="groupFile",id=0,name="file"){
+        const obj = {route,id,name}
+        return JSON.stringify(obj)
+      },
       handleOpen(key) {
         console.log("open", key)
+        if (key === "1")return
         this.goToFileList(key)
       },
       handleClose(key) {
@@ -81,11 +89,13 @@
         console.log("select", key)
         this.goToFileList(key)
       },
-      goToFileList(key){
+      goToFileList(key) {
+        const obj =JSON.parse(key)
         this.$router.push({
-          path: "groupFile",
+          path: obj.route,
           query: {
-            groupId: key,
+            groupId: obj.id,
+            name:obj.name
           }
         })
       }

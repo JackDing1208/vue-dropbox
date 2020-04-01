@@ -149,8 +149,8 @@
       }
     },
     mounted() {
-      const {groupId} = this.$route.query
-      this.groupName = this.groupName + groupId
+      const {groupId,name} = this.$route.query
+      this.groupName = name
       console.log(groupId)
       http.post(url.getPersonalFileList, {
         ParentId: 0,
