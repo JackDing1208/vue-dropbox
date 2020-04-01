@@ -97,7 +97,7 @@
             groupId: obj.id,
             name:obj.name
           }
-        })
+        }).catch(()=>{})
       }
     },
   }

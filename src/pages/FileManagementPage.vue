@@ -151,9 +151,8 @@
     mounted() {
       const {groupId,name} = this.$route.query
       this.groupName = name
-      console.log(groupId)
       http.post(url.getPersonalFileList, {
-        ParentId: 0,
+        ParentId: groupId,
         pagination: {
           rows: 10,
           page: 1,
