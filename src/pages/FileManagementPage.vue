@@ -98,11 +98,12 @@
 <script>
   import {http, url} from "../lib"
   import Uploader from "../components/Uploader"
+
   export default {
     data() {
       return {
-        groupName:"部门名字",
-        dialogTableVisible:false,
+        groupName: "部门名字",
+        dialogTableVisible: false,
         tableData: [{
           date: "2016-05-03",
           name: "王小虎1",
@@ -149,7 +150,10 @@
       }
     },
     mounted() {
-      const {groupId,name} = this.$route.query
+      this.eventBus.$on("xxx", (value) => {
+        console.log(value)
+      })
+      const {groupId, name} = this.$route.query
       this.groupName = name
       http.post(url.getPersonalFileList, {
         ParentId: groupId,
@@ -158,11 +162,12 @@
           page: 1,
         },
         records: 1,
-        total: 1
+        total: 1,
       }).then((res) => {
         console.log(res)
       })
     },
+    inject: ["eventBus"],
 
     methods: {
       toggleSelection(rows) {
@@ -178,7 +183,7 @@
         this.multipleSelection = val
       },
     },
-    components:{Uploader}
+    components: {Uploader},
   }
 
 </script>
@@ -195,7 +200,6 @@
     .el-button-group {
         margin-right: 10px;
     }
-
 
 
     .toolBar {

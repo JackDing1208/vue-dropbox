@@ -10,7 +10,7 @@
             <div class="search-button-wrapper">
                 <div class="search-all">全文搜索</div>
                 <div class="search-line"></div>
-                <div class="search-button">
+                <div class="search-button" @click="searchInput">
                     <i class="el-icon-search"></i>
                 </div>
             </div>
@@ -50,10 +50,14 @@
         input1: "",
       }
     },
+    inject:['eventBus'],
     methods: {
       handleCommand(command) {
         command && this.$router.push({path: command})
       },
+      searchInput(){
+        this.eventBus.$emit('xxx',this.input1)
+      }
     },
   }
 

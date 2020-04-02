@@ -22,9 +22,19 @@
   import Header from "../components/Header"
   import Main from "../components/Main"
   import {http, url} from "../lib"
-
+  import Vue from "vue"
   export default {
     name: "Container",
+    data() {
+      return {
+        eventBus: new Vue()       //给自己使用的eventBus
+      }
+    },
+    provide() {
+      return {
+        eventBus: this.eventBus    //给全部后代组件提供eventBus
+      }
+    },
     components: {Aside, Header, Main},
     mounted() {
       http.get(url.getUserInfo, {keyValue: 2}).then((res) => {
