@@ -36,9 +36,16 @@
                 </el-table-column>
 
                 <el-table-column
-                        prop="name"
                         label="名称"
-                        show-overflow-tooltip>
+                        show-overflow-tooltip
+                        class="table-name-cell"
+                >
+                    <template slot-scope="scope">
+                        <div class="file-name-wrapper">
+                            <img :src="require('../assets/fileType/'+`${scope.row.ExtensionName.slice(1).toUpperCase()}`+'.png')" alt="">
+                            <div style="margin-left: 10px">{{ scope.row.name }}</div>
+                        </div>
+                    </template>
                 </el-table-column>
 
 
@@ -97,14 +104,14 @@
                 <div class="tag-title">文档标签</div>
                 <div class="tag-container">
                     <div class="tag-group">
-                       <div v-for="(name,index) in currentFileTag"
+                        <div v-for="(name,index) in currentFileTag"
                              :key="index.toString()"
                              class="tag-span">
-                           {{name}}
-                           <div class="tag-x" @click="deleteFileTag(index)">
-                               <img src="../assets/delete.png" alt="x" height="10px" width="10px">
-                           </div>
-                       </div>
+                            {{name}}
+                            <div class="tag-x" @click="deleteFileTag(index)">
+                                <img src="../assets/delete.png" alt="x" height="10px" width="10px">
+                            </div>
+                        </div>
                         <el-button @click="tagStatus=!tagStatus">
                             {{tagStatus?"隐藏":"编辑"}}
                         </el-button>
@@ -140,42 +147,46 @@
           name: "王小虎1",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 2,
+          ExtensionName:".zip"
         }, {
           date: "2016-05-02",
           name: "王小虎2",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 3,
-
+          ExtensionName:".png"
         }, {
           date: "2016-05-04",
           name: "王小虎3",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 4,
-
+          ExtensionName:".xlsx"
         }, {
           date: "2016-05-01",
           name: "王小虎4",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 8,
+          ExtensionName:".mp3"
 
         }, {
           date: "2016-05-08",
           name: "王小虎5",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 4,
+          ExtensionName:".doc"
 
         }, {
           date: "2016-05-06",
           name: "王小虎6",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 123412,
+          ExtensionName:".xlsx"
 
         }, {
           date: "2016-05-07",
           name: "王小虎7",
           address: "上海市普陀区金沙江路 1518 弄",
           size: 2,
-
+          ExtensionName:".mp4"
         }],
         multipleSelection: [],
       }
@@ -185,15 +196,18 @@
         console.log(value)
       })
       const {groupId, name} = this.$route.query
+      console.log("groupId",groupId)
       this.groupName = name
       http.post(url.getPersonalFileList, {
-        ParentId: groupId,
+        ParentId: 0,
+        keyword:'',
         pagination: {
           rows: 10,
           page: 1,
+          sidx: "CreateTime",
+          sord:"desc",
+          record:'',
         },
-        records: 1,
-        total: 1,
       }).then((res) => {
         console.log(res)
       })
@@ -213,14 +227,14 @@
       handleSelectionChange(val) {
         this.multipleSelection = val
       },
-      addFileTag(){
-        const tagArray=this.tagInput.split(",")
+      addFileTag() {
+        const tagArray = this.tagInput.split(",").filter(Boolean)
         this.currentFileTag = this.currentFileTag.concat(tagArray)
         this.tagInput = ""
       },
-      deleteFileTag(index){
-        this.currentFileTag.splice(index,1)
-      }
+      deleteFileTag(index) {
+        this.currentFileTag.splice(index, 1)
+      },
     },
     components: {Uploader},
   }
@@ -234,28 +248,32 @@
         align-items: flex-start;
     }
 
-    .tag-group{
+
+    .tag-group {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
     }
 
-    .tag-span{
-        background:#409eff;
+    .tag-span {
+        background: #409eff;
         padding: 0px 8px;
         line-height: 25px;
         height: 25px;
         border-radius: 5px;
         margin-right: 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
         color: #fff;
         position: relative;
     }
 
-    .tag-x{
+    .tag-x {
         position: absolute;
         left: 100%;
-        top:-15px;
+        top: -15px;
         height: 10px;
-        width:10px;
+        width: 10px;
         /*background: #475059;*/
         border-radius: 10px;
     }
@@ -267,11 +285,13 @@
         flex-direction: column;
         align-items: flex-start;
     }
-    .tag-title{
+
+    .tag-title {
         height: 40px;
         margin-right: 10px;
         line-height: 40px;
     }
+
     .container {
         width: 100%;
         height: 100%;
@@ -279,24 +299,31 @@
         flex-direction: column;
     }
 
-    .tag-input-wrapper{
+    .tag-input-wrapper {
         display: flex;
     }
 
-    .tag-input{
+    .tag-input {
         min-width: 400px;
         margin-right: 2px;
     }
 
-    .tag-wrapper .el-button{
-        background:#409eff;
-        color:#fff
+    .tag-wrapper .el-button {
+        background: #409eff;
+        color: #fff
+    }
+
+    .file-name{
+        display: inline-block;
     }
 
     .el-button-group {
         margin-right: 10px;
     }
-
+    .file-name-wrapper{
+        display: flex;
+        align-items: center;
+    }
 
     .toolBar {
         height: 60px;
