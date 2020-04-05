@@ -2,7 +2,7 @@
     <div class="container">
         <section class="toolBar">
             <el-button-group>
-                <el-button type="primary" icon="el-icon-edit" @click="dialogTableVisible = true">上传</el-button>
+                <el-button type="primary" icon="el-icon-edit" @click="uploaderDialogVisible = true">上传</el-button>
                 <el-button type="primary" icon="el-icon-share">下载</el-button>
                 <el-button type="primary" icon="el-icon-delete">添加文件夹</el-button>
                 <el-button type="primary" icon="el-icon-delete">预览</el-button>
@@ -11,7 +11,7 @@
             <el-button-group>
                 <el-button type="primary" icon="el-icon-edit">删除</el-button>
                 <el-button type="primary" icon="el-icon-share">重命名</el-button>
-                <el-button type="primary" icon="el-icon-delete">详情</el-button>
+                <el-button type="primary" icon="el-icon-delete" @click="detailDialogVisible = true">详情</el-button>
             </el-button-group>
 
             <el-button-group>
@@ -88,10 +88,37 @@
         </el-pagination>
 
 
-        <el-dialog title="上传文件" :visible.sync="dialogTableVisible">
+        <el-dialog title="上传文件" :visible.sync="uploaderDialogVisible">
             <Uploader></Uploader>
         </el-dialog>
 
+        <el-dialog title="文件详情" :visible.sync="detailDialogVisible">
+            <div class="tag-wrapper">
+                <div class="tag-title">文档标签</div>
+                <div class="tag-container">
+                    <div class="tag-group">
+                       <div v-for="(name,index) in currentFileTag"
+                             :key="index.toString()"
+                             class="tag-span">
+                           {{name}}
+                           <div class="tag-x" @click="deleteFileTag(index)">
+                               <img src="../assets/delete.png" alt="x" height="10px" width="10px">
+                           </div>
+                       </div>
+                        <el-button @click="tagStatus=!tagStatus">
+                            {{tagStatus?"隐藏":"编辑"}}
+                        </el-button>
+                    </div>
+                    <div class="tag-input-wrapper" v-show="tagStatus">
+                        <el-input v-model="tagInput"
+                                  class="tag-input"
+                                  placeholder="多个标签请用英文,隔开"
+                        ></el-input>
+                        <el-button @click="addFileTag">添加标签</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -103,7 +130,11 @@
     data() {
       return {
         groupName: "部门名字",
-        dialogTableVisible: false,
+        tagStatus: false,
+        tagInput: "",
+        uploaderDialogVisible: false,
+        detailDialogVisible: false,
+        currentFileTag: ["123", "222", "333"],
         tableData: [{
           date: "2016-05-03",
           name: "王小虎1",
@@ -182,6 +213,14 @@
       handleSelectionChange(val) {
         this.multipleSelection = val
       },
+      addFileTag(){
+        const tagArray=this.tagInput.split(",")
+        this.currentFileTag = this.currentFileTag.concat(tagArray)
+        this.tagInput = ""
+      },
+      deleteFileTag(index){
+        this.currentFileTag.splice(index,1)
+      }
     },
     components: {Uploader},
   }
@@ -190,11 +229,68 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .tag-wrapper {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .tag-group{
+        display: flex;
+        align-items: center;
+    }
+
+    .tag-span{
+        background:#409eff;
+        padding: 0px 8px;
+        line-height: 25px;
+        height: 25px;
+        border-radius: 5px;
+        margin-right: 20px;
+        color: #fff;
+        position: relative;
+    }
+
+    .tag-x{
+        position: absolute;
+        left: 100%;
+        top:-15px;
+        height: 10px;
+        width:10px;
+        /*background: #475059;*/
+        border-radius: 10px;
+    }
+
+    .tag-container {
+        flex: 1;
+        /*border: 1px solid red;*/
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .tag-title{
+        height: 40px;
+        margin-right: 10px;
+        line-height: 40px;
+    }
     .container {
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
+    }
+
+    .tag-input-wrapper{
+        display: flex;
+    }
+
+    .tag-input{
+        min-width: 400px;
+        margin-right: 2px;
+    }
+
+    .tag-wrapper .el-button{
+        background:#409eff;
+        color:#fff
     }
 
     .el-button-group {

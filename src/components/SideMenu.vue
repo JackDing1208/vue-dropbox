@@ -77,13 +77,13 @@
         const obj = {route,id,name}
         return JSON.stringify(obj)
       },
-      handleOpen(key) {
-        console.log("open", key)
-        if (key === "1")return
-        this.goToFileList(key)
+      handleOpen(index) {
+        console.log("open", index)
+        if (index === "1")return
+        this.goToFileList(index)
       },
-      handleClose(key) {
-        console.log("close", key)
+      handleClose(index) {
+        console.log("close", index)
       },
       handleSelect(key) {
         console.log("select", key)
